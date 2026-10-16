@@ -1,0 +1,12 @@
+{
+  "config": {
+    "default": true,
+    // Long lines are allowed.
+    "MD013": false,
+    // PR and issue templates legitimately start below H1.
+    "MD041": false,
+    // Repeated headings are fine under different parents (e.g. ADR sections).
+    "MD024": { "siblings_only": true }
+  },
+  "ignores": ["node_modules/**"]
+}
