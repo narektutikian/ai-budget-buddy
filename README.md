@@ -70,4 +70,4 @@ Apache License 2.0. See [LICENSE](LICENSE).
 
 ## Author
 
-Narek - [LinkedIn](https://www.linkedin.com/in/narek-tutikyan/) (placeholder link, to be replaced)
+Narek - [LinkedIn](https://www.linkedin.com/in/narek-tutikyan/)
