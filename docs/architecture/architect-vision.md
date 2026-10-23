@@ -142,7 +142,7 @@ MCP has a real role: exposing the payoff engine and budget queries as tools lets
 ### 5.6 Privacy and data lifecycle (AD-7)
 
 - Raw messages go to private storage with encryption at rest, under per-user key prefixes.
-- The pipeline deletes the raw message and attachment as soon as parsing succeeds or fails. A storage lifecycle rule is a backstop only: expiration is configured in days and removal is asynchronous, with a delay AWS does not bound, so it cannot by itself guarantee deletion within 24 hours. The brief's 24-hour figure should be read as a ceiling met by explicit deletion. The inbound provider's own retention must be confirmed and set as short as it allows.
+- The pipeline attempts to delete the raw message and attachment as soon as parsing succeeds or fails, but queued messages may exceed 24 hours and processing may terminate before deletion. This does not guarantee deletion within 24 hours; do not claim that ceiling without independent age-based cleanup, deletion retries and failure monitoring. A storage lifecycle rule is a backstop only: expiration is configured in days and removal is asynchronous, with a delay AWS does not bound. The inbound provider's own retention must be confirmed and set as short as it allows.
 - Before any model call: remove holder names and account numbers, and route person-to-person transfers by rule so counterparty names never reach the model. Name redaction on transliterated Armenian is imperfect, so rule-based routing is the safer control.
 - Derived data is isolated per user and deleted on request, with a documented deletion path that is tested.
 - Observability stores cost, latency, delivery status and correction counts. No raw descriptions, no message bodies and no review tokens in logs.
