@@ -87,9 +87,9 @@ The result email is useful on its own, so a user who never opens the link still 
 The review page is deliberately small. One page per result, no accounts, no dashboard, no history:
 
 - A summary header.
-- A table of transactions with a category dropdown taken from the fixed category list. The default view shows the uncertain ones first, with a toggle to show all. Each change saves immediately, so there is no Save button, and a correction also applies to similar transactions through a per-user rule.
+- A table of transactions with a category dropdown taken from the fixed category list. The default view shows the uncertain ones first, with a toggle to show all. Each change saves immediately for this result, so there is no Save button. Creating or changing a per-user rule to apply a correction beyond this result requires separate confirmation through a link sent to the registered address; the result-scoped review session alone cannot authorize it.
 - A section for each detected debt with inputs for balance, rate and end date. The updated plan is shown on the page.
-- A "delete my data" button with a confirmation step. Emailing the word DELETE to the alias also works: it sends a confirmation link to the registered address, so a user without the review link can still delete.
+- A "delete my data" button sends a separate confirmation link to the registered address; the result-scoped review session alone cannot authorize user-wide deletion. Emailing the word DELETE to the alias initiates the same confirmation flow, so a user without the review link can still delete.
 
 The page is rendered by the backend. It needs no separate front-end build, no cross-origin setup and no token handling in browser scripts.
 
