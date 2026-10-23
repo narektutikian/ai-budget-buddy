@@ -6,6 +6,7 @@ This directory will hold the architecture documentation for AI Budget Buddy. Not
 
 | Document | Description | Status |
 | --- | --- | --- |
+| [Architect vision](architect-vision.md) | Target architecture, key decisions, threat model and ADR backlog for the invite-only demo | Draft v0.1 |
 | System context | Actors, external systems, and system boundary | Planned |
 | Data model | Core entities (transactions, categories, debts, goals) and their relationships | Planned |
 | Ingestion design | How transactions enter the system (Gmail or file import; decision pending) | Planned |
