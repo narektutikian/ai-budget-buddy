@@ -115,7 +115,7 @@ Results in the email contain aggregates and merchant categories, with no account
 
 ### 5.3 Categorization (AD-3, AD-9)
 
-Pipeline per transaction: normalize text (script, transliteration, casing, bank noise) → rules and a merchant dictionary → matches from the user's own earlier corrections → LLM for what remains, batched, with structured output restricted to a fixed category enum and a confidence value → low confidence goes to the top of the user's review list.
+Pipeline per transaction: normalize text (script, transliteration, casing, bank noise) → rules and a merchant dictionary for an initial category → matches from the user's authorized per-user correction rules, overriding the initial category when present → LLM only for transactions still uncategorized, batched, with structured output restricted to a fixed category enum and a confidence value → low confidence goes to the top of the user's review list.
 
 The 90% accuracy target is meaningful only if the evaluation set is not circular. A synthetic set written by the same person or model that designs the prompts overstates accuracy. Required: a public synthetic set for reproducibility, plus a private held-out set derived from real statement formats and never committed. Report accuracy per category and per language mix, not only the aggregate. In the demo, the live correction rate is the real production metric.
 
