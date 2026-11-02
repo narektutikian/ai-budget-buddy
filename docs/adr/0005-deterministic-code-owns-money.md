@@ -1,6 +1,6 @@
 # ADR-0005: Deterministic code owns money; the model categorizes and proposes
 
-- Status: Proposed
+- Status: Accepted
 - Date: 2026-11-02
 
 ## Context
