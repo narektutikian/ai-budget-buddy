@@ -50,12 +50,12 @@ What deterministic code owns:
 
 What the model may do:
 
-- Assign each transaction that rules and the user's own corrections did not resolve to one category from a fixed list, and report a confidence value.
-- Propose a counterparty label, such as lender or retailer. This is a proposal only. Nothing enters the payoff engine until the user confirms the debt's type, balance, rate and end date on the review page, and the debt-free estimate stays marked provisional until then.
+- In the categorization call, assign each transaction that rules and the user's own corrections did not resolve to one category from a fixed list, and report a confidence value.
+- In a separate counterparty-proposal call, propose a bounded, validated counterparty label, such as lender or retailer. Its output schema contains only that label, with no amount, date or free-form user-facing text. The proposal is not a payoff input. A debt-free estimate is unavailable until the user confirms the debt's type, balance, rate and end date on the review page.
 
 What enforces the line:
 
-- The model's output schema contains a category from the fixed list and a confidence value, and nothing else. Output that does not validate is discarded and the transaction stays uncategorized. The schema has no field for an amount or a date, so none can be returned.
+- The categorization output schema contains a category from the fixed list and a confidence value, and nothing else. Output that does not validate is discarded and the transaction stays uncategorized. This schema has no field for an amount or a date, so none can be returned. The separate counterparty-proposal schema accepts only a bounded, validated label; neither schema allows free-form user-facing text.
 - The categorization call has no tools and no retrieval. Transaction descriptions are treated as data.
 - Reassigning a category moves money between categories. It cannot change the statement total. A test asserts that the category totals sum to the statement total for every fixture.
 - Model-reported confidence is untrusted input, because an injected description can claim a high value. It may order the review list but must not be the only reason a model-assigned row is hidden from review. The mechanism is set in ADR-0008 (planned).
@@ -69,7 +69,7 @@ This boundary is revisited by a new ADR if a use case needs the model to produce
 
 ### Positive
 
-- Every figure in a result can be reproduced from the statement and tested without a model.
+- Every figure in a result can be deterministically recomputed from the statement, recorded classifications and confirmed debt inputs, without rerunning the model.
 - A hostile description can mislabel a transaction but cannot alter an amount, a date or a total.
 - The model can be swapped or removed (ADR-0009, planned) without touching the money logic.
 - Model spend is limited to the transactions that rules could not resolve.
@@ -80,7 +80,7 @@ This boundary is revisited by a new ADR if a use case needs the model to produce
 - Result emails are templated and read less naturally than model-written text.
 - Rules, a merchant dictionary and the parsers have to be built and maintained alongside the model prompt.
 - Debt detection only finds regular payments. Irregular ones that a model might notice are missed unless the user adds them.
-- The user must confirm each detected debt before the estimate stops being provisional.
+- The user must confirm each detected debt before a debt-free estimate is available.
 - Model confidence cannot be trusted as a review signal, so the review list needs a rule that does not depend on it.
 
 ### Cost of the choice
