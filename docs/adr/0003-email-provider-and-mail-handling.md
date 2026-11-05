@@ -1,6 +1,6 @@
 # ADR-0003: Receive and send statement mail with Amazon SES in one AWS region
 
-- Status: Proposed
+- Status: Accepted
 - Date: 2026-11-05
 
 ## Context
