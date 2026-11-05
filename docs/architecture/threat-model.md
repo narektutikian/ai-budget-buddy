@@ -54,7 +54,7 @@ Status is Designed unless stated otherwise. Designed means decided in the vision
 | T11 | Results filtered as spam | SPF, DKIM and DMARC on the sending domain, link on the same authenticated domain, inbox test at invitation, delivery status tracked | Vision 5.7 |
 | T12 | Cost abuse or runaway loop | Per-user token, upload and message caps, billing alerts, global kill switch | Vision 5.7 |
 | T13 | Bank format drift | Parser fails visibly, replies naming the unrecognized file or column, never guesses | Vision 5.7 |
-| T14 | An injected description makes the model report high confidence, so a mislabeled row is not shown for review | Model-reported confidence is untrusted. It may order the review list but must not be the only reason a model-assigned row is hidden. The mechanism is set in ADR-0008 (planned) | ADR-0005 (Proposed) |
+| T14 | An injected description makes the model report high confidence, so a mislabeled row is not shown for review | Model-reported confidence is untrusted. It may order the review list but must not be the only reason a model-assigned row is hidden. The mechanism is set in ADR-0008 (planned) | ADR-0005 (Accepted) |
 | T15 | Raw statements outlive the deletion promise because processing fails or a queue backs up | Age-based cleanup, deletion retries and failure monitoring are required before any deletion ceiling is claimed. A storage lifecycle rule is a backstop only. No ceiling is claimed today | Vision 5.6 |
 | T16 | The inbound mail provider or the model provider keeps data after the pipeline has deleted it | Provider retention confirmed and set as short as it allows. Providers named in the consent notice. Not yet answerable | Vision 5.1 and 5.6 |
 
