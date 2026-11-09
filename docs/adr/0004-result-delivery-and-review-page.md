@@ -1,6 +1,6 @@
 # ADR-0004: Deliver results by email, with a one-page review reached by a scoped link
 
-- Status: Proposed
+- Status: Accepted
 - Date: 2026-11-05
 
 ## Context
