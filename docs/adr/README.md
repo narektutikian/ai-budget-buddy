@@ -11,3 +11,4 @@ This directory is the decision log for AI Budget Buddy. See [ADR-0001](0001-reco
 | [0003](0003-email-provider-and-mail-handling.md) | Receive and send statement mail with Amazon SES in one AWS region | Accepted | 2026-11-05 |
 | [0004](0004-result-delivery-and-review-page.md) | Deliver results by email, with a one-page review reached by a scoped link | Accepted | 2026-11-05 |
 | [0005](0005-deterministic-code-owns-money.md) | Deterministic code owns money; the model categorizes and proposes | Accepted | 2026-11-02 |
+| [0007](0007-privacy-and-data-lifecycle.md) | Delete raw statements explicitly, with an independent age-based sweep | Accepted | 2026-11-09 |
