@@ -55,16 +55,16 @@ Result email:
 Review link:
 
 - The token is random with 128 bits, stored hashed, scoped to one result, and revocable. It expires after 7 days.
-- Opening the link shows a button, not data. Pressing it sends a POST that creates a short session (30 minutes idle) in a cookie that is HttpOnly, Secure and SameSite Strict. A scanner that fetches the link cannot use the token up or trigger a change.
+- Opening the link shows a button, not data. Pressing it sends a POST that creates a short session (30 minutes idle) in a cookie that is HttpOnly, Secure and SameSite Strict. The session's absolute expiry cannot exceed the review token's expiry, and revoking the token invalidates every session issued from it. A scanner that fetches the link cannot use the token up or trigger a change.
 - Every change needs a CSRF token. The token is removed from the address bar after the exchange.
 - Pages are served as no-store, with a strict content security policy, no third-party scripts, no analytics and a no-referrer policy. Transaction text is output-encoded.
-- An expired or revoked link shows "we will email you a new one" and sends it to the registered address. It reveals nothing about the user. Re-issue requests are rate-limited per user, so a holder of an old link cannot flood the registered address.
+- An expired or revoked link shows a button to request a new one, without revealing anything about the user or sending mail on GET. A CSRF-protected POST requests a replacement sent only to the registered address. Re-issue requests are rate-limited per user, so a holder of an old link cannot flood the registered address.
 - The first edit in any 24 hours sends one notice to the registered address, so misuse of a leaked link is visible.
 
 What a review session can do:
 
 - Change the category of a transaction in this result. Each change saves immediately.
-- Enter or correct balance, rate and end date for each detected debt in this result, which is what makes the debt-free estimate available (ADR-0005).
+- Enter, correct and confirm type, balance, rate and end date for each detected debt in this result. The debt-free estimate becomes available only after the user has confirmed all four inputs for every detected debt (ADR-0005).
 - Nothing else. It cannot create or change a per-user rule, cannot delete user data and cannot reach any other result.
 
 Actions with effect beyond one result use a separate confirmation link:
