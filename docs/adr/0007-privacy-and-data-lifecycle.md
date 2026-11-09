@@ -1,6 +1,6 @@
 # ADR-0007: Delete raw statements explicitly, with an independent age-based sweep
 
-- Status: Proposed
+- Status: Accepted
 - Date: 2026-11-05
 
 ## Context
