@@ -1,0 +1,23 @@
+name: no-real-data
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  no-real-data:
+    name: no-real-data
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Test the guard
+        run: node --test scripts/no-real-data/check.test.mjs
+
+      - name: Scan the repository
+        run: node scripts/no-real-data/check.mjs
